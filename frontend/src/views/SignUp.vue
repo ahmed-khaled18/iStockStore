@@ -3,44 +3,42 @@
     <div class="signup-iStock">iStock</div>
     <div class="signup-Sign-In">Create account</div>
     <div class="signup-signupform">
-      <form>
-        <div class="container">
-          <label for="name"><b>Name</b></label>
-          <input type="text" v-model="name" placeholder="Enter name" name="name" required>            
+      <div class="container">
+        <label for="name"><b>Name</b></label>
+        <input type="text" v-model="name" placeholder="Enter name" name="name" required>            
 
-          <label for="email"><b>Email</b></label>
-          <input type="text" v-model="email" placeholder="Enter email" name="email" required>
+        <label for="email"><b>Email</b></label>
+        <input type="text" v-model="email" placeholder="Enter email" name="email" required>
 
-          <label for="psw"><b>Password</b></label>
-          <input type="password" v-model="password" placeholder="Enter password" name="password" required>
+        <label for="psw"><b>Password</b></label>
+        <input type="password" v-model="password" placeholder="Enter password" name="password" required>
 
-          <label for="repsw"><b>Re-enter Password</b></label>
-          <input type="password" v-model="repassword" placeholder="Enter password" name="repassword" required>
-          <div v-if="!isMatch" class="signup-PasswordMissMatch">password does not match</div>        
+        <label for="repsw"><b>Re-enter Password</b></label>
+        <input type="password" v-model="repassword" placeholder="Enter password" name="repassword" required>
+        <div v-if="!isMatch" class="signup-PasswordMissMatch">password does not match</div>        
 
-          <label for="address"><b>Address</b></label>
-          <input type="text" v-model="address" placeholder="Enter address" name="address" required>
+        <label for="address"><b>Address</b></label>
+        <input type="text" v-model="address" placeholder="Enter address" name="address" required>
 
-          <label for="city"><b>City</b></label>
-          <input type="text" v-model="city" placeholder="Enter city" name="city" required>
+        <label for="city"><b>City</b></label>
+        <input type="text" v-model="city" placeholder="Enter city" name="city" required>
 
-          <label for="mobile"><b>Mobile</b></label>
-          <input type="text" v-model="mobile" placeholder="Enter mobile" name="mobile" required>
+        <label for="mobile"><b>Mobile</b></label>
+        <input type="text" v-model="mobile" placeholder="Enter mobile" name="mobile" required>
 
-          <div class="signup-button">
-            <button>Create your iStock Account</button>
+        <div class="signup-button">
+          <button @click="Register()">Create your iStock Account</button>
+        </div>
+
+        <div class="signup-terms">
+          <div>
+            By continuing you agree to iStock's Condtions
           </div>
-
-          <div class="signup-terms">
-            <div>
-              By continuing you agree to iStock's Condtions
-            </div>
-            <div>
-              of Use and Privacy Notice
-            </div>
+          <div>
+            of Use and Privacy Notice
           </div>
         </div>
-      </form>
+      </div>
     </div>
     <div class="signup-signin" >
         <div class="signup-Already">Already have an account?</div>
@@ -58,6 +56,8 @@
 </template>
 
 <script>
+import validations from "@/utils/validations";
+import axios from 'axios'
 export default {
     name:"SignUp",
     data () {
@@ -86,8 +86,16 @@ export default {
           this.isMatch=false;
         }
       },
+  },
+  methods:{
+    async Register(){
+      await axios.post('http://localhost:3000/api/user/register', {
+        email: this.email,
+        username: this.name,
+        password: this.password,
+      }).then((response)=> console.log(response));
+    },
   }
-
 }
 </script>
 
