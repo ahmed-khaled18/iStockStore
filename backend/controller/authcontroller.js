@@ -1,4 +1,4 @@
-const User = require('../model/User');
+const User = require('../model/UserModel');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const {registerValidation,loginValidation} = require('../middleware/validation');
@@ -43,6 +43,9 @@ exports.register_post = async (req,res) => {
         username: req.body.username,
         email: req.body.email,
         password: hashPassword,
+        address: req.body.address,
+        city: req.body.city,
+        mobile: req.body.mobile,
     });
     try {
         // saving the new user to the database

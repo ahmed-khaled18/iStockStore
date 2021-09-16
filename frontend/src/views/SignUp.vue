@@ -56,7 +56,6 @@
 </template>
 
 <script>
-import validations from "@/utils/validations";
 import axios from 'axios'
 export default {
     name:"SignUp",
@@ -93,7 +92,15 @@ export default {
         email: this.email,
         username: this.name,
         password: this.password,
-      })
+      }).then((response) => {
+        if (response.status == 200) {
+          this.$router.replace('/signin');
+        }
+      }, (error) => {
+          if (error.response.status == 400) {
+
+          }
+      });
     },
   }
 }
