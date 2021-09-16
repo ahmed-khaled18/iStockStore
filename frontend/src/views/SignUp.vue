@@ -93,7 +93,7 @@ export default {
         email: this.email,
         username: this.name,
         password: this.password,
-      }).then((response)=> console.log(response));
+      })
     },
   }
 }

@@ -1,5 +1,5 @@
 require('dotenv').config();
-const session = require("express-session")
+
 
 const mongoose = require('mongoose');
 
@@ -12,8 +12,6 @@ const connectDB = () => {
     }
 
 }
-
-
 
 module.exports = connectDB;
 
