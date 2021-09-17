@@ -92,8 +92,12 @@ export default {
         email: this.email,
         username: this.name,
         password: this.password,
+        address: this.address,
+        city: this.city,
+        mobile: this.mobile,
       }).then((response) => {
         if (response.status == 200) {
+          console.log(response.headers["content-type"]);
           this.$router.replace('/signin');
         }
       }, (error) => {

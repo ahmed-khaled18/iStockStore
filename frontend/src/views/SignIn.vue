@@ -3,29 +3,26 @@
     <div class="signin-iStock">iStock</div>
     <div class="signin-Sign-In">Sign-In</div>
     <div class="signin-signinform">
-      <form>
-        <div class="container">
+      <div class="container">
+        <label for="email"><b>Email</b></label>
+        <input type="text" v-model="email" placeholder="Enter email" name="email" required>
 
-          <label for="email"><b>Email</b></label>
-          <input type="text" placeholder="Enter email" name="email" required>
+        <label for="psw"><b>Password</b></label>
+        <input type="password" v-model="password" placeholder="Enter password" name="password" required>
 
-          <label for="psw"><b>Password</b></label>
-          <input type="password" placeholder="Enter password" name="password" required>
+        <div class="signin-button">
+          <button @click="Login()">Sign-In</button>
+        </div>
 
-          <div class="signin-button">
-            <button>Sign-In</button>
+        <div class="signin-terms">
+          <div>
+            By continuing you agree to iStock's Condtions
           </div>
-
-          <div class="signin-terms">
-            <div>
-              By continuing you agree to iStock's Condtions
-            </div>
-            <div>
-              of Use and Privacy Notice
-            </div>
+          <div>
+            of Use and Privacy Notice
           </div>
         </div>
-      </form>
+      </div>
     </div>
 
     <div class="signin-terms">New to iStock ?</div>
@@ -39,10 +36,31 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     name:"SignIn",
-    components: {
-    
+    data () {
+      return {
+        email:"",
+        password:"",
+      }
+    },
+
+    methods:{
+    async Login(){
+      await axios.post('http://localhost:3000/api/user/login', {
+        email: this.email,
+        password: this.password,
+      }).then((response) => {
+        if (response.status == 200) {
+          this.$router.replace('/');
+        }
+      }, (error) => {
+          if (error.response.status == 400) {
+
+          }
+      });
+    },
   }
 }
 </script>
