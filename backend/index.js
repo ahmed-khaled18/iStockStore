@@ -2,10 +2,10 @@
 //app setup
 const express = require('express');
 
-const authpath = __dirname + '/view/';
+const path = __dirname + '/view/';
 const app = express();
 
-app.use(express.static(authpath));
+app.use(express.static(path));
 
 //conncting to database
 const connectDB = require("./config/db");

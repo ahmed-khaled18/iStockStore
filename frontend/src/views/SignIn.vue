@@ -50,7 +50,11 @@ export default {
     methods:{
     ...mapActions(["LogIn"]),
     async Login(){
-      await this.LogIn(this.email, this.password);
+      let user = {
+        email:this.email,
+        password:this.password,
+      }
+      await this.LogIn(user);
     },
   }
 }

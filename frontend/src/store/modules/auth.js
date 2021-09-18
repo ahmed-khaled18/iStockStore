@@ -3,7 +3,6 @@ import router from '../../router';
 
 const state = {
     user: null,
-    posts: null,
 };
 
 const getters = {
@@ -12,26 +11,20 @@ const getters = {
 };
 
 const actions = {
-    async Register({ dispatch }, form) {
-        await axios.post('register', form)
-        let UserForm = new FormData()
-        UserForm.append('username', form.username)
-        UserForm.append('password', form.password)
-        await dispatch('LogIn', UserForm)
-    },
+
 
     //   async LogIn({commit}, user) {
     //     await axios.post("login", user);
     //     await commit("setUser", user.get("username"));
     //   },
 
-    async LogIn({ commit }, myemail, pass) {
+    async LogIn({ commit }, user) {
         await axios.post('http://localhost:3000/api/user/login', {
-            email: myemail,
-            password: pass,
+            email: user.email,
+            password: user.password,
         }).then((response) => {
             if (response.status == 200) {
-                commit("setUser", myemail);
+                commit("setUser", user.email);
                 router.replace('/');
             }
         }, (error) => {
