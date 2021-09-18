@@ -37,6 +37,7 @@
 
 <script>
 import axios from 'axios'
+import { mapActions } from "vuex";
 export default {
     name:"SignIn",
     data () {
@@ -47,19 +48,9 @@ export default {
     },
 
     methods:{
+    ...mapActions(["LogIn"]),
     async Login(){
-      await axios.post('http://localhost:3000/api/user/login', {
-        email: this.email,
-        password: this.password,
-      }).then((response) => {
-        if (response.status == 200) {
-          this.$router.replace('/');
-        }
-      }, (error) => {
-          if (error.response.status == 400) {
-
-          }
-      });
+      await this.LogIn(this.email, this.password);
     },
   }
 }
