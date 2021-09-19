@@ -1,11 +1,10 @@
 
 //app setup
 const express = require('express');
-
-//const path = __dirname + '/view/';
 const app = express();
 
-//app.use(express.static(path));
+const path = __dirname + '/view/';
+app.use(express.static(path));
 
 //conncting to database
 const connectDB = require("./config/db");
@@ -29,9 +28,9 @@ app.use(express.json());
 const authRoute = require('./routes/auth');
 const productRoute = require('./routes/productRoutes');
 const cartRoute = require('./routes/cartRoutes');
-// app.get('/', function (req,res) {
-//   res.sendFile(path + "index.html");
-// });
+app.get('/', function (req,res) {
+  res.sendFile(path + "index.html");
+});
 app.use('/api/user',authRoute);
 app.use('/api/products',productRoute);
 app.use('/api/cart',cartRoute);
