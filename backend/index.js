@@ -38,3 +38,6 @@ app.use('/api/cart',cartRoute);
 
 
 app.listen(process.env.PORT || 3000, ()=> console.log('Server Up and running'));
+
+const lib = require("./seederScript");
+lib.importData();
