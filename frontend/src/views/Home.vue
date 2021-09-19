@@ -48,7 +48,7 @@
 							<div>{{ item.price }} EGP</div>
 							<v-spacer></v-spacer>
 							<v-rating
-								:value="3"
+								:value="item.rating"
 								color="amber"
 								dense
 								half-increments
@@ -71,7 +71,7 @@
 				<v-card-text>
 					<v-row align="center" class="mx-0">
 						<v-rating
-							:value="3"
+							:value="itemDialogue.rating"
 							color="amber"
 							dense
 							half-increments
@@ -101,6 +101,8 @@ export default {
 		return {
 			isItemDialogueOpen: false,
 			itemDialogue: {
+				rating:"",
+				numReviews:"",
 				countInStock: "",
 				description: "",
 				imageUrl: "",
