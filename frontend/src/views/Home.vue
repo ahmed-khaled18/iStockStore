@@ -1,36 +1,6 @@
 <template>
 	<div class="home-body">
-		<div class="navigationBar">
-			<div class="navigation_Bar_Left_Container">
-				<div class="navigationBar-iStock"><strong>iStock</strong></div>
-			</div>
-			<div class="router_links_container">
-				<router-link class="router_link" to="/">
-					<v-btn elevation="0" class="button1"> Home </v-btn>
-				</router-link>
-
-				<!-- <router-link class="router_link" to="/shop"> -->
-				<v-btn elevation="0" class="button1"> Shop </v-btn>
-				<!-- </router-link> -->
-
-				<!-- <router-link class="router_link" to="/about"> -->
-				<v-btn elevation="0" class="button1"> About Us</v-btn>
-				<!-- </router-link> -->
-
-				<router-link class="router_link" to="/signin">
-					<v-btn elevation="0" class="button1"> Sign in</v-btn>
-				</router-link>
-
-				<!-- <router-link class="router_link" to="/cart"> -->
-				<v-btn elevation="0" class="button1 cart_Button">
-					<v-icon left dark>
-						mdi-cart-minus
-					</v-icon>
-					Your Cart
-				</v-btn>
-				<!-- </router-link> -->
-			</div>
-		</div>
+		<NavigationBar />
 		<v-divider></v-divider>
 		<v-carousel show-arrows-on-hover hide-delimiter-background height="200" cycle>
 			<v-carousel-item v-for="(img, i) in carouselImages" :key="i" :src="img.src">
@@ -48,7 +18,7 @@
 							<div>{{ item.price }} EGP</div>
 							<v-spacer></v-spacer>
 							<v-rating
-								:value="item.rating"
+								:value="3"
 								color="amber"
 								dense
 								half-increments
@@ -71,7 +41,7 @@
 				<v-card-text>
 					<v-row align="center" class="mx-0">
 						<v-rating
-							:value="itemDialogue.rating"
+							:value="3"
 							color="amber"
 							dense
 							half-increments
@@ -95,14 +65,16 @@
 </template>
 
 <script>
+import NavigationBar from "../components/NavigationBar.vue";
 import axios from "axios";
 export default {
+	components: {
+		NavigationBar,
+	},
 	data() {
 		return {
 			isItemDialogueOpen: false,
 			itemDialogue: {
-				rating:"",
-				numReviews:"",
 				countInStock: "",
 				description: "",
 				imageUrl: "",

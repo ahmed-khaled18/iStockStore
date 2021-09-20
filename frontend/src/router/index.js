@@ -4,6 +4,8 @@ import Home from '../views/Home.vue'
 import store from '../store';
 import SignIn from '../views/SignIn.vue'
 import SignUp from '../views/SignUp.vue'
+import Cart from '../views/Cart.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -11,6 +13,12 @@ const routes = [
     path: '/',
     name: 'home',
     component: Home,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: '/cart',
+    name: 'cart',
+    component: Cart,
     meta: { requiresAuth: true },
   },
   {
