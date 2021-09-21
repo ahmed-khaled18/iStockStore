@@ -10,7 +10,7 @@
 		<v-divider></v-divider>
 		<div
 			class="cart_Grid"
-			v-for="(item, i) in $store.state.auth.cart_items"
+			v-for="item in $store.state.auth.cart_items"
 			:key="item._id"
 		>
 			<div class="cart_Grid_item">
@@ -22,8 +22,8 @@
 				<div class="middle_column">
 					<div class="text-h6">{{ item.name }}</div>
 					<div class="text-subtitle-1 item_Describtion">{{ item.description }}</div>
-					<div class="text-subtitle-1  item_Quantity">Qty: {{item.quantity}}</div>
-					<div class="delete_item">
+					<div class="text-subtitle-1  item_Quantity">Qty: {{ item.quantity }}</div>
+					<div class="delete_item" @click="deleteItem(item)">
 						Delete
 					</div>
 				</div>
@@ -44,7 +44,18 @@ export default {
 	data() {
 		return {};
 	},
-	methods: {},
+	methods: {
+		deleteItem: function(item) {
+			let itemIndex = this.$store.state.auth.cart_items.findIndex((i => i._id == item._id));
+			// if(item.quantity > 1) {
+			// 	this.$store.state.auth.cart_items[itemIndex].quantity -=1;
+			// }
+			// else{
+			// 	this.$store.state.auth.cart_items.splice(itemIndex, 1);
+			// }
+			this.$store.state.auth.cart_items.splice(itemIndex, 1);
+		},
+	},
 	// mounted: function() {
 	// 	console.log(this.$store.state.auth.cart_items);
 	// },
@@ -128,7 +139,7 @@ export default {
 
 .delete_item:hover {
 	color: rgb(17, 26, 32);
-    cursor: pointer;
-    width: fit-content;
+	cursor: pointer;
+	width: fit-content;
 }
 </style>
