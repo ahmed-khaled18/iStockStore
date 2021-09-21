@@ -10,7 +10,7 @@
 		<v-divider></v-divider>
 		<div
 			class="cart_Grid"
-			v-for="(item, i) in $store.state.auth.cart_items"
+			v-for="item in $store.state.auth.cart_items"
 			:key="item._id"
 		>
 			<div class="cart_Grid_item">
