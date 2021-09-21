@@ -3,6 +3,7 @@ import router from '../../router';
 
 const state = {
     user: null,
+    cart_items: [],
 };
 
 const getters = {

@@ -1,36 +1,6 @@
 <template>
 	<div class="home-body">
-		<div class="navigationBar">
-			<div class="navigation_Bar_Left_Container">
-				<div class="navigationBar-iStock"><strong>iStock</strong></div>
-			</div>
-			<div class="router_links_container">
-				<router-link class="router_link" to="/">
-					<v-btn elevation="0" class="button1"> Home </v-btn>
-				</router-link>
-
-				<!-- <router-link class="router_link" to="/shop"> -->
-				<v-btn elevation="0" class="button1"> Shop </v-btn>
-				<!-- </router-link> -->
-
-				<!-- <router-link class="router_link" to="/about"> -->
-				<v-btn elevation="0" class="button1"> About Us</v-btn>
-				<!-- </router-link> -->
-
-				<router-link class="router_link" to="/signin">
-					<v-btn elevation="0" class="button1"> Sign in</v-btn>
-				</router-link>
-
-				<!-- <router-link class="router_link" to="/cart"> -->
-				<v-btn elevation="0" class="button1 cart_Button">
-					<v-icon left dark>
-						mdi-cart-minus
-					</v-icon>
-					Your Cart
-				</v-btn>
-				<!-- </router-link> -->
-			</div>
-		</div>
+		<NavigationBar />
 		<v-divider></v-divider>
 		<v-carousel show-arrows-on-hover hide-delimiter-background height="200" cycle>
 			<v-carousel-item v-for="(img, i) in carouselImages" :key="i" :src="img.src">
@@ -48,7 +18,7 @@
 							<div>{{ item.price }} EGP</div>
 							<v-spacer></v-spacer>
 							<v-rating
-								:value="item.rating"
+								:value="3"
 								color="amber"
 								dense
 								half-increments
@@ -71,7 +41,7 @@
 				<v-card-text>
 					<v-row align="center" class="mx-0">
 						<v-rating
-							:value="itemDialogue.rating"
+							:value="3"
 							color="amber"
 							dense
 							half-increments
@@ -89,20 +59,34 @@
 					<div class="my-2 text-subtitle-1">• {{ itemDialogue.price }} EGP •</div>
 					<div>{{ itemDialogue.description }}</div>
 				</v-card-text>
+				<v-card-actions>
+					<v-btn
+						elevation="0"
+						class="button1 add_item_Button"
+						@click="addItemToCart(itemDialogue)"
+					>
+						<v-icon left dark>
+							mdi-cart-plus
+						</v-icon>
+						Add Item to Cart
+					</v-btn>
+				</v-card-actions>
 			</v-card>
 		</v-dialog>
 	</div>
 </template>
 
 <script>
+import NavigationBar from "../components/NavigationBar.vue";
 import axios from "axios";
 export default {
+	components: {
+		NavigationBar,
+	},
 	data() {
 		return {
 			isItemDialogueOpen: false,
 			itemDialogue: {
-				rating:"",
-				numReviews:"",
 				countInStock: "",
 				description: "",
 				imageUrl: "",
@@ -140,8 +124,17 @@ export default {
 		},
 		showItemDialogue: function(item) {
 			this.itemDialogue = item;
-			console.log(this.itemDialogue);
 			this.isItemDialogueOpen = true;
+		},
+		addItemToCart: function(itemDialogue) {
+			if (this.$store.state.auth.cart_items.filter((item) => item._id == itemDialogue._id).length > 0) {
+				let itemIndex = this.$store.state.auth.cart_items.findIndex((item => item._id == itemDialogue._id));
+				this.$store.state.auth.cart_items[itemIndex].quantity +=1 ;
+			}
+			else{
+				itemDialogue.quantity = 1
+				this.$store.state.auth.cart_items.push(itemDialogue);
+			}
 		},
 	},
 	mounted: async function() {
@@ -236,5 +229,22 @@ export default {
 	display: flex;
 	width: 100%;
 	justify-content: flex-end;
+}
+
+.button1 {
+	text-transform: none !important;
+	font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif !important;
+	font-size: 18px !important;
+	background-color: transparent !important;
+	padding: 18px 15px 18px 15px !important;
+	color: rgb(97, 97, 114) !important;
+	border-radius: 0px !important;
+}
+.add_item_Button {
+	color: white !important;
+	background-color: rgb(71, 89, 103) !important;
+	left: 50%;
+	-ms-transform: translateX(-50%);
+	transform: translateX(-50%);
 }
 </style>
