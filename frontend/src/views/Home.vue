@@ -127,8 +127,8 @@ export default {
 			this.isItemDialogueOpen = true;
 		},
 		addItemToCart: function(itemDialogue) {
-			if (this.$store.state.auth.cart_items.filter((item) => item.name == itemDialogue.name).length > 0) {
-				let itemIndex = this.$store.state.auth.cart_items.findIndex((item => item.name == itemDialogue.name));
+			if (this.$store.state.auth.cart_items.filter((item) => item._id == itemDialogue._id).length > 0) {
+				let itemIndex = this.$store.state.auth.cart_items.findIndex((item => item._id == itemDialogue._id));
 				this.$store.state.auth.cart_items[itemIndex].quantity +=1 ;
 			}
 			else{

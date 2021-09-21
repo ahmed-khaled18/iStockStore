@@ -11,7 +11,7 @@
 		<div
 			class="cart_Grid"
 			v-for="(item, i) in $store.state.auth.cart_items"
-			:key="i"
+			:key="item._id"
 		>
 			<div class="cart_Grid_item">
 				<v-img
