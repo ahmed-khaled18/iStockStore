@@ -22,7 +22,7 @@
 				<div class="middle_column">
 					<div class="text-h6">{{ item.name }}</div>
 					<div class="text-subtitle-1 item_Describtion">{{ item.description }}</div>
-					<div class="text-subtitle-1  item_Quantity">Qty: 2</div>
+					<div class="text-subtitle-1  item_Quantity">Qty: {{item.quantity}}</div>
 					<div class="delete_item">
 						Delete
 					</div>
@@ -45,9 +45,9 @@ export default {
 		return {};
 	},
 	methods: {},
-	mounted: function() {
-		console.log(this.$store.state.auth.cart_items);
-	},
+	// mounted: function() {
+	// 	console.log(this.$store.state.auth.cart_items);
+	// },
 };
 </script>
 

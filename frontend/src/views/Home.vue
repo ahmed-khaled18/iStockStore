@@ -59,6 +59,18 @@
 					<div class="my-2 text-subtitle-1">• {{ itemDialogue.price }} EGP •</div>
 					<div>{{ itemDialogue.description }}</div>
 				</v-card-text>
+				<v-card-actions>
+					<v-btn
+						elevation="0"
+						class="button1 add_item_Button"
+						@click="addItemToCart(itemDialogue)"
+					>
+						<v-icon left dark>
+							mdi-cart-plus
+						</v-icon>
+						Add Item to Cart
+					</v-btn>
+				</v-card-actions>
 			</v-card>
 		</v-dialog>
 	</div>
@@ -112,8 +124,17 @@ export default {
 		},
 		showItemDialogue: function(item) {
 			this.itemDialogue = item;
-			console.log(this.itemDialogue);
 			this.isItemDialogueOpen = true;
+		},
+		addItemToCart: function(itemDialogue) {
+			if (this.$store.state.auth.cart_items.filter((item) => item.name == itemDialogue.name).length > 0) {
+				let itemIndex = this.$store.state.auth.cart_items.findIndex((item => item.name == itemDialogue.name));
+				this.$store.state.auth.cart_items[itemIndex].quantity +=1 ;
+			}
+			else{
+				itemDialogue.quantity = 1
+				this.$store.state.auth.cart_items.push(itemDialogue);
+			}
 		},
 	},
 	mounted: async function() {
@@ -208,5 +229,22 @@ export default {
 	display: flex;
 	width: 100%;
 	justify-content: flex-end;
+}
+
+.button1 {
+	text-transform: none !important;
+	font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif !important;
+	font-size: 18px !important;
+	background-color: transparent !important;
+	padding: 18px 15px 18px 15px !important;
+	color: rgb(97, 97, 114) !important;
+	border-radius: 0px !important;
+}
+.add_item_Button {
+	color: white !important;
+	background-color: rgb(71, 89, 103) !important;
+	left: 50%;
+	-ms-transform: translateX(-50%);
+	transform: translateX(-50%);
 }
 </style>
