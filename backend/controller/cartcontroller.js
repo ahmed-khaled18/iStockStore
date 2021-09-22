@@ -11,18 +11,31 @@ exports.add_cart = async (req, res) => {
         
       };
     }
-      const cart = new Cart({
-      products: req.body.products,
-      order_total: req.body.order_total,
-      email: req.body.email     
-      });
+    //check if the cart already exist
+    const cartExist = await Cart.findOne({email: req.body.user_id});
+    if(cartExist){
       try {
-        // saving the new user to the database
-        const saveCart = await cart.save();
-        res.send(saveCart);
-        res.status(200);
-    } catch (error) {
-        res.status(400).send(error);
+        await Cart.updateOne({email: req.body.user_id},{$set:{products: req.body.products,order_total: req.body.order_total,}});
+        res.status(200).send("cart Updated");
+      } catch (error) {
+        res.status(400).json(error);
+      }
+
+
+    }else{
+      const cart = new Cart({
+        products: req.body.products,
+        order_total: req.body.order_total,
+        email: req.body.email     
+        });
+        try {
+          // saving the new user to the database
+          const saveCart = await cart.save();
+          res.send(saveCart);
+          res.status(200);
+      } catch (error) {
+          res.status(400).send(error);
+      }
     }
 
   };
