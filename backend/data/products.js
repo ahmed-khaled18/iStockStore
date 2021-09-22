@@ -1,6 +1,7 @@
 
 const products = [
   {
+    product_id:"0",
     name: "PlayStation 5",
     imageUrl:
       "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80",
@@ -12,6 +13,7 @@ const products = [
     numReviews: 10,
   },
   {
+    product_id:"1",
     name: "Iphone 12",
     imageUrl:
       "https://images.unsplash.com/photo-1605787020600-b9ebd5df1d07?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1463&q=80",
@@ -23,6 +25,7 @@ const products = [
     numReviews: 7,
   },
   {
+    product_id:"2",
     name: "Cannon EOS-1D",
     imageUrl:
       "https://images.unsplash.com/photo-1519183071298-a2962feb14f4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
@@ -34,6 +37,7 @@ const products = [
     numReviews: 3,
   },
   {
+    product_id:"3",
     name: "Amazon Alexa",
     imageUrl:
       "https://images.unsplash.com/photo-1518444065439-e933c06ce9cd?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80",
@@ -45,6 +49,7 @@ const products = [
     numReviews: 15,
   },
   {
+    product_id:"4",
     name: "Audio Technica Headphones",
     imageUrl:
       "https://images.unsplash.com/photo-1558756520-22cfe5d382ca?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
@@ -56,6 +61,7 @@ const products = [
     numReviews: 2,
   },
   {
+    product_id:"5",
     name: "JBL FLIP 4",
     imageUrl:
       "https://images.unsplash.com/photo-1564424224827-cd24b8915874?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80",
@@ -68,6 +74,7 @@ const products = [
     numReviews: 9,
   },
   {
+    product_id:"6",
     name: "Apple smart watch ",
     imageUrl:
       "https://images.unsplash.com/photo-1533675180235-0ba57d720b51?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=320&q=80",
@@ -80,6 +87,7 @@ const products = [
     numReviews: 11
   },
   {
+    product_id:"7",
     name: "lenovo Thinkpad",
     imageUrl:
       "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1400&q=80",
@@ -92,6 +100,7 @@ const products = [
   },
 
   {
+    product_id:"8",
     name: "Macbook Pro",
     imageUrl:
       "https://images.unsplash.com/5/unsplash-kitsune-3.jpg?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
@@ -105,6 +114,7 @@ const products = [
   },
 
   {
+    product_id:"9",
     name: "Huawei Band 4",
     imageUrl:
       "https://images.unsplash.com/photo-1521445441669-8d7d07586439?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80",
@@ -116,6 +126,7 @@ const products = [
 
   },
   {
+    product_id:"10",
     name: "Apple airpods",
     imageUrl:
       "https://images.unsplash.com/photo-1617814175955-24521459cb64?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80",
@@ -126,6 +137,7 @@ const products = [
     numReviews: 9
   },
   {
+    product_id:"11",
     name: "Apple wireless mouse",
     imageUrl:
       "https://images.unsplash.com/photo-1516224254461-a082c15f78df?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80",
