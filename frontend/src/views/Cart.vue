@@ -58,38 +58,76 @@ export default {
 		return {};
 	},
 	methods: {
-		deleteItem: function(item) {
+		deleteItem: async function(item) {
 			let itemIndex = this.$store.state.auth.cart_items.findIndex(
 				(i) => i._id == item._id
 			);
-			// if(item.quantity > 1) {
-			// 	this.$store.state.auth.cart_items[itemIndex].quantity -=1;
-			// }
-			// else{
-			// 	this.$store.state.auth.cart_items.splice(itemIndex, 1);
-			// }
 			this.$store.state.auth.cart_items.splice(itemIndex, 1);
 			this.$store.state.auth.order_total -= item.price * item.quantity;
-		},
-		ckeckoutOrder: async function (){
-			await axios.post('http://localhost:3000/api/cart/addcart', {
+			await axios.post("http://localhost:3000/api/cart/addcart", {
 				products: this.$store.state.auth.cart_items,
-    			order_total:this.$store.state.auth.order_total,
-				user_id: this.$store.state.auth.user_id
-			}).then((response) => {
-				if (response.status == 200) {
-					console.log(response)
+				order_total: this.$store.state.auth.order_total,
+				user_id: this.$store.state.auth.user_id,
+			})
+			.then(
+				(response) => {
+					if (response.status == 200) {
+						// console.log(response)
+					}
+				},
+				(error) => {
+					if (error.response.status == 400) {
+						// console.log(error)
+					}
 				}
-			}, (error) => {
-				if (error.response.status == 400) {
-										console.log(error)
+			);
+		},
+		ckeckoutOrder: async function() {
+			await axios
+				.post("http://localhost:3000/api/cart/addcart", {
+					products: this.$store.state.auth.cart_items,
+					order_total: this.$store.state.auth.order_total,
+					user_id: this.$store.state.auth.user_id,
+				})
+				.then(
+					(response) => {
+						if (response.status == 200) {
+							// console.log(response)
+						}
+					},
+					(error) => {
+						if (error.response.status == 400) {
+							// console.log(error)
+						}
+					}
+				);
+		},
+		fetchCart: async function() {
+			await axios.post("http://localhost:3000/api/cart/", {
+				user_id: this.$store.state.auth.user_id,
+			})
+			.then(
+				(response) => {
+					if (response.status == 200) {
+						let temp = 	response.data[1];				
+						temp.forEach((product, index) => {
+							product.quantity = response.data[0].products[index].quantity
+						});
+						this.$store.state.auth.cart_items = temp;
+						this.$store.state.auth.order_total = response.data[0].order_total
+					}
+				},
+				(error) => {
+					if (error.response.status == 400) {
+						// console.log(error)
+					}
 				}
-			});
-		}
+			);
+		},
 	},
-	// mounted: function() {
-	// 	console.log(this.$store.state.auth.cart_items);
-	// },
+	mounted: function() {
+		this.fetchCart();
+	},
 };
 </script>
 

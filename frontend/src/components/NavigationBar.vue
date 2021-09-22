@@ -16,24 +16,37 @@
 			<v-btn elevation="0" class="button1"> About Us</v-btn>
 			<!-- </router-link> -->
 
-			<router-link class="router_link" to="/signin">
-				<v-btn elevation="0" class="button1"> Sign in</v-btn>
-			</router-link>
+			<v-btn elevation="0" v-if="isLoggedIn" @click="logout()" class="button1"> Logout</v-btn>
 
 			<router-link class="router_link" to="/cart">
-			<v-btn elevation="0" class="button1 cart_Button">
-				<v-icon left dark>
-					mdi-cart-minus
-				</v-icon>
-				Your Cart
-			</v-btn>
+				<v-btn elevation="0" class="button1 cart_Button">
+					<v-icon left dark>
+						mdi-cart-minus
+					</v-icon>
+					Your Cart
+				</v-btn>
 			</router-link>
 		</div>
 	</div>
 </template>
 
 <script>
-export default {};
+import router from '../router';
+import { mapActions } from "vuex";
+export default {
+	computed: {
+		isLoggedIn: function() {
+			return this.$store.getters.isAuthenticated;
+		},
+	},
+	methods: {
+		...mapActions(["LogOut"]),
+		async logout() {
+			await this.LogOut();
+			router.replace('/signin');
+		},
+	},
+};
 </script>
 
 <style scoped>

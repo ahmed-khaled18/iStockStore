@@ -22,7 +22,7 @@ const actions = {
         }).then((response) => {
             if (response.status == 200) {
                 commit("setUser", user.email);
-                commit("setUserID", response.data._id);
+                commit("setUserID", user.email);
                 router.replace('/');
             }
         }, (error) => {
@@ -49,6 +49,7 @@ const mutations = {
     },
 
     logout(state, user) {
+        state.user_id = null;
         state.user = user;
     },
 };

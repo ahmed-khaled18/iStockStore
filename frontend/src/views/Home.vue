@@ -18,7 +18,7 @@
 							<div>{{ item.price }} EGP</div>
 							<v-spacer></v-spacer>
 							<v-rating
-								:value="3"
+								:value="item.rating"
 								color="amber"
 								dense
 								half-increments
@@ -41,7 +41,7 @@
 				<v-card-text>
 					<v-row align="center" class="mx-0">
 						<v-rating
-							:value="3"
+							:value="itemDialogue.rating"
 							color="amber"
 							dense
 							half-increments
@@ -126,22 +126,59 @@ export default {
 			this.itemDialogue = item;
 			this.isItemDialogueOpen = true;
 		},
-		addItemToCart: function(itemDialogue) {
+		addItemToCart: async function(itemDialogue) {
 			this.$store.state.auth.order_total += itemDialogue.price;
 			if (this.$store.state.auth.cart_items.filter((item) => item._id == itemDialogue._id).length > 0) {
 				let itemIndex = this.$store.state.auth.cart_items.findIndex((item => item._id == itemDialogue._id));
 				this.$store.state.auth.cart_items[itemIndex].quantity +=1 ;
 			}
 			else{
-				itemDialogue.product_id = itemDialogue._id;
 				itemDialogue.quantity = 1;
 				this.$store.state.auth.cart_items.push(itemDialogue);
 			}
+
+			await axios.post("http://localhost:3000/api/cart/addcart", {
+				products: this.$store.state.auth.cart_items,
+				order_total: this.$store.state.auth.order_total,
+				user_id: this.$store.state.auth.user_id,
+			})
+			.then(
+				(response) => {
+					if (response.status == 200) {
+						// console.log(response)
+					}
+				},
+				(error) => {
+					if (error.response.status == 400) {
+						// console.log(error)
+					}
+				}
+			);
+
 		},
 	},
 	mounted: async function() {
 		await this.fetchItems();
-		// this.cards = this.items.map(item => {return}) ;
+		await axios.post("http://localhost:3000/api/cart/", {
+			user_id: this.$store.state.auth.user_id,
+		})
+		.then(
+			(response) => {
+				if (response.status == 200) {
+					let temp = 	response.data[1];				
+					temp.forEach((product, index) => {
+						product.quantity = response.data[0].products[index].quantity
+					});
+					this.$store.state.auth.cart_items = temp;
+					this.$store.state.auth.order_total = response.data[0].order_total
+				}
+			},
+			(error) => {
+				if (error.response.status == 400) {
+					// console.log(error)
+				}
+			}
+		);
 	},
 };
 </script>
