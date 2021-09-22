@@ -6,9 +6,10 @@ const app = express();
 const path = __dirname + '/view/';
 app.use(express.static(path));
 
-//conncting to database
+//connecting to database
 const connectDB = require("./config/db");
 connectDB();
+   
 
 //Middleware
 const cors = require('cors')
