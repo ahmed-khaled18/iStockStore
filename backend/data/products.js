@@ -8,7 +8,7 @@ const products = [
     description:
       "PlayStation 5 (PS5) is a home video game console developed by Sony Interactive Entertainment. Announced in 2019 as the successor to the PlayStation 4, the PS5 was released on November 12, 2020 in Australia, Japan, New Zealand, North America, Singapore, and South Korea, and November 19, 2020 onwards in other major markets except China and India.",
     price: 499,
-    countInStock: 15,
+    countInStock: 150,
     rating: 3,
     numReviews: 10,
   },
@@ -20,7 +20,7 @@ const products = [
     description:
       "Welcome to a new era of iPhone. Beautifully bright 6.1-inch Super Retina XDR display.1 Ceramic Shield with 4x better drop performance.2 Incredible low-light photography with Night mode on all cameras. Cinema-grade Dolby Vision video recording, editing, and playback. Powerful A14 Bionic chip. And new MagSafe accessories for easy attach and faster wireless charging.3 Let the fun begin.",
     price: 1099,
-    countInStock: 10,
+    countInStock: 170,
     rating: 5,
     numReviews: 7,
   },
@@ -32,7 +32,7 @@ const products = [
     description:
       "The EOS-1D X combines speed with image quality, to create the next generation camera for professionals. Full frame 18 megapixel sensor with Dual “DIGIC 5+” processors sets the standard, and up to 12 frames per second shooting takes it beyond.",
     price: 1300,
-    countInStock: 5,
+    countInStock: 85,
     rating: 2,
     numReviews: 3,
   },
@@ -44,7 +44,7 @@ const products = [
     description:
       "It is capable of voice interaction, music playback, making to-do lists, setting alarms, streaming podcasts, playing audiobooks, and providing weather, traffic, sports, and other real-time information, such as news. Alexa can also control several smart devices using itself as a home automation system.",
     price: 50,
-    countInStock: 25,
+    countInStock: 45,
     rating: 4,
     numReviews: 15,
   },
@@ -56,7 +56,7 @@ const products = [
     description:
       "Outfitted with 45mm large-aperture dynamic drivers and an over-ear, closed-back design, the ATH-M50x headphones deliver clarity, deep bass, and extended bandwidth (15 Hz to 28 kHz) while isolating you from outside sounds.",
     price: 233,
-    countInStock: 4,
+    countInStock: 84,
     rating: 1,
     numReviews: 2,
   },
@@ -69,7 +69,7 @@ const products = [
     description:
       "JBL Flip 4 is the next generation in the award-winning Flip series; it is a portable Bluetooth speaker that delivers surprisingly powerful stereo sound. This compact speaker is powered by a 3000mAh rechargeable Li-ion battery that offers up to 12 hours of continuous, high-quality audio playtime.",
     price: 140,
-    countInStock: 10,
+    countInStock: 70,
     rating: 3,
     numReviews: 9,
   },
@@ -82,7 +82,7 @@ const products = [
     description:
       "it is a smart watch which  has many exciting features as call,music ,clock,health monitoring apps",
     price: 3440,
-    countInStock: 18,
+    countInStock: 98,
     rating: 3,
     numReviews: 11
   },
@@ -94,7 +94,7 @@ const products = [
     description:
       "Lenovo E14 20RA000KED ThinkPad Laptop, 14 Inch FHD, Intel Core i7-10510U, 1 TB, 8 GB RAM, 2GB AMD Radeon RX 640 Graphics, DOS - Black",
     price: 17000,
-    countInStock: 7,
+    countInStock: 47,
     rating: 5,
     numReviews: 8
   },
@@ -107,7 +107,7 @@ const products = [
 
     description: "Apple MacBook Pro is a macOS laptop with a 13.30-inch display that has a resolution of 2560x1600 pixels. It is powered by a Core i5 processor and it comes with 12GB of RAM. The Apple MacBook Pro packs 512GB of SSD storage.",
     price: 40000,
-    countInStock: 9,
+    countInStock: 98,
     rating: 4,
     numReviews: 5
 
@@ -120,7 +120,7 @@ const products = [
       "https://images.unsplash.com/photo-1521445441669-8d7d07586439?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80",
     description: "it is a sport's band that measures the health condition while practicing any kind of sports",
     price: 558,
-    countInStock: 8,
+    countInStock: 178,
     rating: 3,
     numReviews: 16
 
@@ -132,7 +132,7 @@ const products = [
       "https://images.unsplash.com/photo-1617814175955-24521459cb64?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80",
     description: "Apple airpods, True Wireless Earphones /Intelligent Active Noise Canceling, black",
     price: 1844,
-    countInStock: 7,
+    countInStock: 497,
     rating: 4,
     numReviews: 9
   },
@@ -143,7 +143,7 @@ const products = [
       "https://images.unsplash.com/photo-1516224254461-a082c15f78df?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80",
     description: "Wireless MouseBrand: Apple Color: BlackButtons: 6Connectivity: Wireless 2.4gTechnology: OpticalVoltage",
     price: 600,
-    countInStock: 6,
+    countInStock: 1586,
     rating: 2,
     numReviews: 15,
 

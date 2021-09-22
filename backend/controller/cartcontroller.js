@@ -26,7 +26,7 @@ exports.add_cart = async (req, res) => {
       const cart = new Cart({
         products: req.body.products,
         order_total: req.body.order_total,
-        email: req.body.email     
+        email: req.body.user_id     
         });
         try {
           // saving the new user to the database
@@ -43,7 +43,7 @@ exports.add_cart = async (req, res) => {
   exports.get_cart = async (req, res) => {
     try {
       let theproducts=[];
-      const usercart = await Cart.findOne({email:req.body.email});
+      const usercart = await Cart.findOne({email:req.body.user_id});
       for (var product in usercart.products){
         let theproduct = await Product.findOne({product_id:usercart.products[product].product_id});
         theproducts.push(theproduct);
