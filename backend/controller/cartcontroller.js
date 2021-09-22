@@ -29,13 +29,13 @@ exports.add_cart = async (req, res) => {
 
   exports.get_cart = async (req, res) => {
     try {
+      let theproducts=[];
       const usercart = await Cart.findOne({email:req.body.email});
       for (var product in usercart.products){
-          const theproduct = await Product.findOne({product_id:usercart.products[product].product_id});
-          console.log(theproduct);
-  
+        let theproduct = await Product.findOne({product_id:usercart.products[product].product_id});
+        theproducts.push(theproduct);
         }
-      const response=[usercart];
+      const response=[usercart,theproducts];
       res.status(200).json(response);
     } catch (error) {
       res.status(400).send(error);
