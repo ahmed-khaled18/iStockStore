@@ -31,6 +31,19 @@
 			</div>
 			<v-divider class="items_divider"></v-divider>
 		</div>
+		<div class="text-h4" v-if="$store.state.auth.cart_items.length == 0">
+			No Items in Cart
+		</div>
+		<div class="total_price_and_Checkout_Conatiner" v-else>
+			<div>Subtotal {{ $store.state.auth.order_total }}</div>
+			<v-btn
+				elevation="0"
+				class="button1 checkout_Button"
+				@click="ckeckoutOrder()"
+			>
+				Proceed to Checkout
+			</v-btn>
+		</div>
 	</div>
 </template>
 
@@ -46,7 +59,9 @@ export default {
 	},
 	methods: {
 		deleteItem: function(item) {
-			let itemIndex = this.$store.state.auth.cart_items.findIndex((i => i._id == item._id));
+			let itemIndex = this.$store.state.auth.cart_items.findIndex(
+				(i) => i._id == item._id
+			);
 			// if(item.quantity > 1) {
 			// 	this.$store.state.auth.cart_items[itemIndex].quantity -=1;
 			// }
@@ -54,7 +69,23 @@ export default {
 			// 	this.$store.state.auth.cart_items.splice(itemIndex, 1);
 			// }
 			this.$store.state.auth.cart_items.splice(itemIndex, 1);
+			this.$store.state.auth.order_total -= item.price * item.quantity;
 		},
+		ckeckoutOrder: async function (){
+			await axios.post('http://localhost:3000/api/cart/addcart', {
+				products: this.$store.state.auth.cart_items,
+    			order_total:this.$store.state.auth.order_total,
+				user_id: this.$store.state.auth.user_id
+			}).then((response) => {
+				if (response.status == 200) {
+					console.log(response)
+				}
+			}, (error) => {
+				if (error.response.status == 400) {
+										console.log(error)
+				}
+			});
+		}
 	},
 	// mounted: function() {
 	// 	console.log(this.$store.state.auth.cart_items);
@@ -141,5 +172,27 @@ export default {
 	color: rgb(17, 26, 32);
 	cursor: pointer;
 	width: fit-content;
+}
+
+.button1 {
+	text-transform: none !important;
+	font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif !important;
+	font-size: 18px !important;
+	background-color: transparent !important;
+	padding: 18px 15px 18px 15px !important;
+	color: rgb(97, 97, 114) !important;
+	border-radius: 0px !important;
+}
+.checkout_Button {
+	color: white !important;
+	background-color: rgb(71, 89, 103) !important;
+}
+
+.total_price_and_Checkout_Conatiner {
+	width: 93%;
+	display: flex;
+	flex-direction: column;
+	/* justify-content: flex-end; */
+	align-items: flex-end;
 }
 </style>

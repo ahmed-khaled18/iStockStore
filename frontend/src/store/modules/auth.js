@@ -4,6 +4,8 @@ import router from '../../router';
 const state = {
     user: null,
     cart_items: [],
+    order_total:0,
+    user_id:0
 };
 
 const getters = {
@@ -13,12 +15,6 @@ const getters = {
 
 const actions = {
 
-
-    //   async LogIn({commit}, user) {
-    //     await axios.post("login", user);
-    //     await commit("setUser", user.get("username"));
-    //   },
-
     async LogIn({ commit }, user) {
         await axios.post('http://localhost:3000/api/user/login', {
             email: user.email,
@@ -26,6 +22,7 @@ const actions = {
         }).then((response) => {
             if (response.status == 200) {
                 commit("setUser", user.email);
+                commit("setUserID", response.data._id);
                 router.replace('/');
             }
         }, (error) => {
@@ -45,6 +42,10 @@ const actions = {
 const mutations = {
     setUser(state, username) {
         state.user = username;
+    },
+
+    setUserID(state, id) {
+        state.user_id = id;
     },
 
     logout(state, user) {

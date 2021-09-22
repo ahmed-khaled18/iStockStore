@@ -127,12 +127,14 @@ export default {
 			this.isItemDialogueOpen = true;
 		},
 		addItemToCart: function(itemDialogue) {
+			this.$store.state.auth.order_total += itemDialogue.price;
 			if (this.$store.state.auth.cart_items.filter((item) => item._id == itemDialogue._id).length > 0) {
 				let itemIndex = this.$store.state.auth.cart_items.findIndex((item => item._id == itemDialogue._id));
 				this.$store.state.auth.cart_items[itemIndex].quantity +=1 ;
 			}
 			else{
-				itemDialogue.quantity = 1
+				itemDialogue.product_id = itemDialogue._id;
+				itemDialogue.quantity = 1;
 				this.$store.state.auth.cart_items.push(itemDialogue);
 			}
 		},
