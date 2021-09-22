@@ -5,7 +5,7 @@ An e-commerce website with basic functionally.
 
 Done by:
 Ahmed khaled 
-Youhana Farid
+Yohanna Farid
 Maria Magdy
 Verina magdy
 Youssab latif
